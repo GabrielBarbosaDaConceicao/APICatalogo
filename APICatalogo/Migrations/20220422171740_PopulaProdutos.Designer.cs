@@ -3,6 +3,7 @@ using System;
 using APICatalogo.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICatalogo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220422171740_PopulaProdutos")]
+    partial class PopulaProdutos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace APICatalogo.Migrations
 
                     b.HasKey("CategoriaId");
 
-                    b.ToTable("Categorias", (string)null);
+                    b.ToTable("Categorias");
                 });
 
             modelBuilder.Entity("APICatalogo.Models.Produto", b =>
@@ -77,7 +79,7 @@ namespace APICatalogo.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Produtos", (string)null);
+                    b.ToTable("Produtos");
                 });
 
             modelBuilder.Entity("APICatalogo.Models.Produto", b =>
