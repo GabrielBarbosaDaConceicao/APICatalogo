@@ -17,6 +17,12 @@ namespace APICatalogo.Controllers
             _context = context;
         }
 
+
+        [HttpGet("produtos")]
+        public ActionResult<IEnumerable<Categoria>> GetCategoriasProdutos()
+        {
+            return _context.Categorias.Include(p => p.Produtos).ToList();
+        }
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> Get()
         {
@@ -67,7 +73,7 @@ namespace APICatalogo.Controllers
             var categoria = _context.Categorias.FirstOrDefault(p => p.CategoriaId == id);
             if (categoria == null)
             {
-                return NotFound();
+                return NotFound("Categoria não encontrada...");
             }
             _context.Categorias.Remove(categoria);
             _context.SaveChanges();
